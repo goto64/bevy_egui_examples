@@ -45,8 +45,8 @@ fn expand_list(
 
             egui::TopBottomPanel::show_animated_between_inside(
                 ui, expansion_list.expanded,
-                egui::TopBottomPanel::top("BuildCollapsed").show_separator_line(false).frame(Frame::none()),
-                egui::TopBottomPanel::top("BuildExpand").show_separator_line(false).frame(Frame::none()),
+                egui::TopBottomPanel::top("ListCollapsed").show_separator_line(false).frame(Frame::none()),
+                egui::TopBottomPanel::top("ListExpanded").show_separator_line(false).frame(Frame::none()),
                 |ui, _|
             {
                 if !expansion_list.expanded { // Collapsed
@@ -57,7 +57,7 @@ fn expand_list(
                     }
                 } else { // Expanded
                    ui.label(bigger_text(String::from("Select food:")));
-                   let selected_food = machine_selection_ui(ui, &food_images, expansion_list.selected);
+                   let selected_food = expanded_selection_ui(ui, &food_images, expansion_list.selected);
                    if selected_food.is_some() {
                        expansion_list.selected = selected_food.unwrap();
                        expansion_list.expanded  = false;
@@ -78,7 +78,7 @@ fn bigger_text(text: String) -> egui::RichText {
 
 const LIST_HIGHLIGHT_COLOR: egui::Color32 = egui::Color32::from_rgb(52, 66, 73);
 
-fn machine_selection_ui(
+fn expanded_selection_ui(
     ui: &mut Ui,
     food_images: &FoodImages,
     prev_food: usize
