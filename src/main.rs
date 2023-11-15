@@ -1,12 +1,14 @@
 use bevy::prelude::*;
 use bevy_egui::{egui, EguiContexts, EguiPlugin};
-use bevy_egui::egui::epaint;
+use bevy_egui::egui::{epaint};
+use crate::catppuccin::catppuccin_egui;
 use crate::expand_list_example::expand_list::ExpansionListPlugin;
 use crate::notification_example::notification::NotificationsPlugin;
 use crate::notification_example::notification_producer::{NotificationProducer, ui_notification_producer};
 
 mod notification_example;
 mod expand_list_example;
+mod catppuccin;
 
 fn main() {
     App::new()

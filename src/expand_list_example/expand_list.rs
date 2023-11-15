@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy_egui::{egui, EguiContexts};
 use bevy_egui::egui::{emath, Frame, Pos2, TextureId, Ui};
+use bevy_egui::egui::load::SizedTexture;
 use crate::notification_example::notification::Notifications;
 
 /// Demonstration of how to create an expandable selection list with icons and text
@@ -104,8 +105,10 @@ struct FoodImages {
 
 impl FoodImages {
     fn clickable_food_button(&self, ui: &mut Ui, image: TextureId, text: impl Into<String>, col: Option<egui::Color32>) -> bool {
+        let image = egui::Image::new(egui::widgets::ImageSource::Texture(
+            SizedTexture { id: image, size: emath::Vec2 { x: 32.0, y: 32.0 } }));
         let mut btn = egui::Button::image_and_text(
-            image, emath::Vec2 { x: 32.0, y: 32.0 }, egui::RichText::new(text).size(16.0).monospace())
+            image, egui::RichText::new(text).size(16.0).monospace())
             .min_size(emath::Vec2 { x: 220.0, y: 32.0 });
         if col.is_some() {
             btn = btn.fill(col.unwrap());
@@ -150,7 +153,7 @@ fn load_food_images(
     });
 }
 
-fn ui_add_image(contexts: &mut EguiContexts, asset_server: &AssetServer, path: &str) -> TextureId {
+fn ui_add_image(contexts: &mut EguiContexts, asset_server: &AssetServer, path: &'static str) -> TextureId {
     let img: Handle<Image> = asset_server.load(path);
     return contexts.add_image(img);
 }

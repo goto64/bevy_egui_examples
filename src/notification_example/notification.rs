@@ -64,6 +64,7 @@ fn display_notification(
                 .fixed_pos(Pos2 { x: max_x - (WIN_WIDTH + 180.0) + notifications.offset_x, y: max_y - (WIN_HEIGHT + 50.0) })
                 .resizable(false)
                 .title_bar(false)
+                .constrain(false)
                 .show(contexts.ctx_mut(), |ui|
             {
                 ui.set_width(WIN_WIDTH);
