@@ -3,12 +3,14 @@ use bevy_egui::{egui, EguiContexts, EguiPlugin};
 use bevy_egui::egui::{epaint};
 use crate::catppuccin::catppuccin_egui;
 use crate::expand_list_example::expand_list::ExpansionListPlugin;
+use crate::interactive_text::text_layout::TextLayoutPlugin;
 use crate::notification_example::notification::NotificationsPlugin;
 use crate::notification_example::notification_producer::{NotificationProducer, ui_notification_producer};
 
 mod notification_example;
 mod expand_list_example;
 mod catppuccin;
+mod interactive_text;
 
 fn main() {
     App::new()
@@ -17,7 +19,7 @@ fn main() {
             ..default()
         }).set(ImagePlugin::default_nearest()))
         .add_plugins(EguiPlugin)
-        .add_plugins((NotificationsPlugin, ExpansionListPlugin))
+        .add_plugins((NotificationsPlugin, ExpansionListPlugin, TextLayoutPlugin))
         .init_resource::<NotificationProducer>()
         .add_systems(Startup, ui_theme_selection)
         .add_systems(Update, ui_notification_producer)
