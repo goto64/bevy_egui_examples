@@ -32,8 +32,10 @@ fn ui_theme_selection(mut contexts: EguiContexts) {
     let old = contexts.ctx_mut().style().visuals.clone();
     contexts.ctx_mut().set_visuals(egui::Visuals {
         window_shadow: epaint::Shadow {
+            offset: [1.0, 2.0].into(),
+            blur: 9.0,
+            spread: 8.0,
             color: catppuccin_egui::MOCHA.base,
-            extrusion: 10.0,
         },
         ..old
     });

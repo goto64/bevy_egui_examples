@@ -72,7 +72,7 @@ fn display_notification(
                 ui.horizontal(|ui| {
                     notification_icon(ui);
                     ui.add_space(10.0);
-                    let notif_text = egui::Label::new(notifications.displaying.as_ref().unwrap()).wrap(true);
+                    let notif_text = egui::Label::new(notifications.displaying.as_ref().unwrap()).wrap();
                     let height = ui.add(notif_text).rect.size().y;
                     ui.set_max_height(height);
                 });
